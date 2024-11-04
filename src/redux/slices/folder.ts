@@ -3,14 +3,14 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 type initialStateProps = {
     folders: ({
         _count: {
-            videos: number
+          videos: number
         }
-    } & {
+      } & {
         id: string
         name: string
         createdAt: Date
-        workspaceId: string | null
-    })[]
+        workSpaceId: string | null
+      })[]
 }
 
 const initialState : initialStateProps = {

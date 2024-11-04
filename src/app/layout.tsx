@@ -5,6 +5,7 @@ import { Manrope } from "next/font/google";
 import { ThemeProvider } from "@/components/theme";
 import ReactQueryProvider from "@/react-query";
 import { ReduxProvider } from "@/redux/provider";
+import { Toaster } from "sonner";
 
 export const metadata: Metadata = {
   title: "Opal",
@@ -35,6 +36,7 @@ export default function RootLayout({
             <ReduxProvider>
               <ReactQueryProvider>
                 {children}
+                <Toaster />
               </ReactQueryProvider>
             </ReduxProvider>
           </ThemeProvider>

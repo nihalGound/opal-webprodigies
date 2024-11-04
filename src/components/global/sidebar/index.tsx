@@ -18,6 +18,8 @@ import GlobalCard from '../global-card'
 import InfoBar from '../info-bar'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 import { Button } from '@/components/ui/button'
+import { useDispatch } from 'react-redux'
+import { WORKSPACES } from '@/redux/slices/workspace'
 
 type Props = {
     activeWorkspaceId: string
@@ -27,6 +29,7 @@ const Sidebar = ({ activeWorkspaceId }: Props) => {
     const router = useRouter();
     const { data, isFetched } = useQueryData(["user-workspaces"], getWorkSpaces)
     const pathName = usePathname();
+    const dispatch = useDispatch();
 
     const { data: workspace } = data as WorkspaceProps
 
@@ -40,6 +43,10 @@ const Sidebar = ({ activeWorkspaceId }: Props) => {
     }
 
     const currentWorkspace = workspace.workspace.find((s) => s.id === activeWorkspaceId)
+
+    if (isFetched && workspace) {
+      dispatch(WORKSPACES({workspaces:workspace.workspace}))
+    }
 
     const SidebarSection = (
         <div className="bg-[#111111] flex-none relative p-4 h-full w-[250px] flex flex-col gap-4 items-center overflow-hidden">

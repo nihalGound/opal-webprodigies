@@ -6,7 +6,9 @@ import {
 import CreateForlders from '@/components/global/create-folders'
 import CreateWorkspace from '@/components/global/create-workspace'
 import Folders from '@/components/global/folders'
+import Videos from '@/components/global/videos'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { query } from '@/lib/react-query'
 import {
   dehydrate,
   HydrationBoundary,
@@ -19,8 +21,9 @@ type Props = {
   params: { workspaceId: string }
 }
 
-const Page = async ({ params: { workspaceId } }: Props) => {
-  const query = new QueryClient()
+const Page = async ({ params }: Props) => {
+
+  const {workspaceId} = await params;
 
   await query.prefetchQuery({
     queryKey: ['workspace-folders'],
@@ -54,7 +57,7 @@ const Page = async ({ params: { workspaceId } }: Props) => {
                 Archive
               </TabsTrigger>
             </TabsList>
-            <div className="flex gap-x-3">
+            <div className="flex gap-x-3 max-md:flex-col max-md:gap-y-2">
               <CreateWorkspace />
               <CreateForlders workspaceId={workspaceId} />
             </div>
@@ -65,6 +68,10 @@ const Page = async ({ params: { workspaceId } }: Props) => {
             </TabsContent>
           </section>
         </Tabs>
+      </div>
+      {/* users videos  */}
+      <div>
+        <Videos workspaceId={workspaceId!} videosKey="user-videos"  />
       </div>
     </HydrationBoundary>
   )

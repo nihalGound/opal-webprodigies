@@ -8,7 +8,7 @@ import React from 'react'
 import VideoCard from './video-card'
 
 type Props = {
-  folderId: string
+  folderId?: string
   videosKey: string
   workspaceId: string
 }
@@ -16,7 +16,7 @@ type Props = {
 const Videos = ({ folderId, videosKey, workspaceId }: Props) => {
   
   const { data: videoData } = useQueryData([videosKey], () =>
-    getAllUserVideos(folderId)
+    getAllUserVideos(folderId || workspaceId)
   )
 
   const { status: videosStatus, data: videos } = videoData as VideosProps
