@@ -42,7 +42,7 @@ const Sidebar = ({ activeWorkspaceId }: Props) => {
         router.push(`/dashboard/${value}`)
     }
 
-    const currentWorkspace = workspace.workspace.find((s) => s.id === activeWorkspaceId)
+    const currentWorkspace = workspace?.workspace.find((s) => s.id === activeWorkspaceId)
 
     if (isFetched && workspace) {
       dispatch(WORKSPACES({workspaces:workspace.workspace}))
@@ -70,7 +70,7 @@ const Sidebar = ({ activeWorkspaceId }: Props) => {
           <SelectGroup>
             <SelectLabel>Workspaces</SelectLabel>
             <Separator />
-            {workspace.workspace.map((workspace) => (
+            {workspace?.workspace.map((workspace) => (
               <SelectItem
                 value={workspace.id}
                 key={workspace.id}
@@ -148,8 +148,8 @@ const Sidebar = ({ activeWorkspaceId }: Props) => {
 
       <nav className="w-full">
         <ul className="h-[150px] overflow-auto overflow-x-hidden fade-layer">
-          {workspace.workspace.length > 0 &&
-            workspace.workspace.map(
+          {workspace?.workspace.length > 0 &&
+            workspace?.workspace.map(
               (item) =>
                 item.type !== 'PERSONAL' && (
                   <SidebarItem

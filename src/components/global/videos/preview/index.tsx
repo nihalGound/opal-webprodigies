@@ -1,9 +1,9 @@
 "use client"
-import { getPreviewVideo } from '@/actions/workspace'
+import { getPreviewVideo, sendemailForFirstView } from '@/actions/workspace'
 import { useQueryData } from '@/hooks/useQueryData'
 import { VideoProps } from '@/types/index.type'
 import { useRouter } from 'next/navigation'
-import React from 'react'
+import React, { useEffect } from 'react'
 import CopyLink from '../copy-link'
 import RichLink from '../rich-link'
 import { truncateString } from '@/lib/utils'
@@ -27,10 +27,21 @@ const VideoPreview = ({videoId}: Props) => {
         router.push("/")
     }
 
+    const notifyFirstView = async () => await sendemailForFirstView(videoId)
+
     const daysAgo = Math.floor(
         (new Date().getTime() - video.createdAt.getTime()) / (24*60*60*1000)
     )
 
+
+    useEffect(() => {
+        if(video.views === 0) {
+            notifyFirstView()
+        }
+        return () => {
+            notifyFirstView()
+        }
+    },[])
   return (
     <div className="grid grid-cols-1 xl:grid-cols-3 p-10 lg:px-20 lg:py-10 overflow-y-auto gap-4">
         <div className="flex flex-col lg:col-span-2 gap-y-10">
