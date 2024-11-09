@@ -10,7 +10,7 @@ type Props = {
 
 const GlobalCard = ({title,description,children,footer}: Props) => {
   return (
-    <Card className="bg-transparent mt-4">
+    <Card className="bg-transparent mt-2">
         <CardHeader className="p-4">
             <CardTitle className="text-muted text-[#9D9D9D]">
                 {title}
