@@ -29,14 +29,14 @@ export async function POST(
       return NextResponse.json({ status: 200, message: 'Studio updated!' })
   
     return NextResponse.json({
-      status: 400,
+      status: '400',
       message: 'Oops! something went wrong',
     })
   } catch (error) {
     return NextResponse.json({
-        status: 500,
+        status: '500',
         message: 'Oops! something went wrong',
-        error
+        error,
       })
   }
 }
