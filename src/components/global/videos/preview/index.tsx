@@ -70,7 +70,7 @@ const VideoPreview = ({videoId}: Props) => {
                 controls
             >
                 <source
-                    src={`${process.env.NEXT_PUBLIC_CLOUD_FRONT_STREAM_URL}/${video.source}#1`}
+                    src={`${video.source}`}
                 />
             </video>
             <div className="flex flex-col text-2xl gap-y-4">

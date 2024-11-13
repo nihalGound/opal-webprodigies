@@ -194,7 +194,7 @@ export default function Sidebar({ activeWorkspaceId }: Props) {
           </SheetContent>
         </Sheet>
       </div>
-      <div className="hidden md:block w-64 h-screen overflow-y-auto fixed left-0 top-0">
+      <div className="hidden md:block w-64  h-screen overflow-y-auto ">
         {SidebarContent}
       </div>
     </>
