@@ -12,6 +12,7 @@ import TabMenu from '../../tabs'
 import AiTools from '../../ai-tools'
 import VideoTranscript from '../../video-transcript'
 import Activities from '../../activities'
+import EditVideo from '../edit'
 
 type Props = {
     videoId: string
@@ -27,10 +28,12 @@ const VideoPreview = ({videoId}: Props) => {
         router.push("/")
     }
 
+    console.log("is author : ",author)
+
     const notifyFirstView = async () => await sendemailForFirstView(videoId)
 
     const daysAgo = Math.floor(
-        (new Date().getTime() - video.createdAt.getTime()) / (24*60*60*1000)
+        (new Date().getTime() - video?.createdAt?.getTime()) / (24*60*60*1000)
     )
 
 
@@ -48,7 +51,7 @@ const VideoPreview = ({videoId}: Props) => {
             <div>
                 <div className="flex gap-x-5 items-start justify-between">
                     <h2 className="text-white text-4xl font-bold">{video.title}</h2>
-                    {/* {author ? (
+                    {author ? (
                         <EditVideo 
                             videoId={videoId}
                             title={video.title as string}
@@ -57,7 +60,7 @@ const VideoPreview = ({videoId}: Props) => {
                     ) : (
                         <>
                         </>
-                    )} */}
+                    )}
                 </div>
                 <span className="flex gap-x-3 mt-2">
                     <p className="text-[#9D9D9D] capitalize">{video.User?.firstname} {video.User?.lastname}</p>
@@ -70,14 +73,14 @@ const VideoPreview = ({videoId}: Props) => {
                 controls
             >
                 <source
-                    src={`${video.source}`}
+                    src={`https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/video/upload/opal/${video.source}.webm`}
                 />
             </video>
             <div className="flex flex-col text-2xl gap-y-4">
                 <div className="flex gap-x-5 items-center justify-between">
                     <p className="text-[#BDBDBD] font-semibold">Description</p>
-                   {/* {author ? (
-                        <EditVideo 
+                   {author ? (
+                        <EditVideo
                             videoId={videoId}
                             title={video.title as string}
                             description={video.description as string}
@@ -85,7 +88,7 @@ const VideoPreview = ({videoId}: Props) => {
                     ) : (
                         <>
                         </>
-                    )} */}
+                    )}
                 </div>
                 <p className="text-[#9D9D9D] text-lg font-medium">{video.description}</p>
             </div>
@@ -100,7 +103,7 @@ const VideoPreview = ({videoId}: Props) => {
                 <RichLink
                     title={video.title as string}
                     id={videoId}
-                    source={video.source}
+                    source={`https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/video/upload/opal/${video.source}.webm`}
                     description={truncateString(video.description as string, 150)}
                 />
                 <Download className="text-[#4d4c4c]" />

@@ -23,8 +23,8 @@ const LandingPageNavBar = (props: Props) => {
         <Link href="/"
         className="bg-[#7320DD] py-2 px-5 font-semibold text-lg rounded-full hover:bg-[#7320DD]/80"
         >Home</Link>
-        <Link href="/">Pricing</Link>
-        <Link href="/">Contact</Link>
+        <Link href="#pricing">Pricing</Link>
+        <Link href="#features">Features</Link>
       </div>
       <Link href="/auth/sign-in">
         <Button className="text-base flex gap-x-2">

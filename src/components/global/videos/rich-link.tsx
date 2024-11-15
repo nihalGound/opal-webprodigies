@@ -21,7 +21,7 @@ const RichLink = ({title, id, source, description}: Props) => {
             >
                 <source
                     type="video/webm"
-                    src="${source}"
+                    src="https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/video/upload/opal/${source}.webm"
                 />
             </video>
         </a>`

@@ -4,10 +4,10 @@ import { client } from "@/lib/prisma";
 import { currentUser } from "@clerk/nextjs/server"
 import { sendEmail } from "./user";
 
-export const verifyAccessToWorkspace = async (workspaceId : string) => {
+export const verifyAccessToWorkspace = async (workspaceId: string) => {
     try {
         const user = await currentUser();
-        if(!user) {
+        if (!user) {
             return {
                 status: 403,
                 message: "Unauthorized ! User not found"
@@ -35,14 +35,14 @@ export const verifyAccessToWorkspace = async (workspaceId : string) => {
                 ],
             },
         })
-        if(isUserInWorkspace)
+        if (isUserInWorkspace)
             return {
                 status: 200,
                 data: { workspace: isUserInWorkspace },
             }
         return {
-            status : 403,
-            data: {workspace:null}
+            status: 403,
+            data: { workspace: null }
         }
     } catch (error) {
         return {
@@ -53,10 +53,10 @@ export const verifyAccessToWorkspace = async (workspaceId : string) => {
     }
 }
 
-export const getWorkSpaces = async () =>  {
+export const getWorkSpaces = async () => {
     try {
         const user = await currentUser();
-        if(!user) {
+        if (!user) {
             return {
                 status: 403,
                 message: "Unauthorized !! User not found"
@@ -94,10 +94,10 @@ export const getWorkSpaces = async () =>  {
             },
         })
 
-        if(workspaces) {
-            return  {
+        if (workspaces) {
+            return {
                 status: 200,
-                data:workspaces,
+                data: workspaces,
             }
         }
         return {
@@ -117,35 +117,35 @@ export const getWorkSpaces = async () =>  {
 export const getWorkspaceFolders = async (workspaceId: string) => {
     try {
         const user = await currentUser();
-        if(!user ) {
+        if (!user) {
             return {
                 status: 403,
                 message: "Unauthorized!, User not found"
             }
         }
-       const isFolders = await client.folder.findMany({
-        where: {
-            workSpaceId:workspaceId,
-        },
-        include: {
-            _count: {
-                select: {
-                    videos: true,
+        const isFolders = await client.folder.findMany({
+            where: {
+                workSpaceId: workspaceId,
+            },
+            include: {
+                _count: {
+                    select: {
+                        videos: true,
+                    },
                 },
             },
-        },
-       })
+        })
 
-       if(isFolders && isFolders.length > 0) {
-        return {
-            status: 200,
-            data: isFolders,
+        if (isFolders && isFolders.length > 0) {
+            return {
+                status: 200,
+                data: isFolders,
+            }
         }
-       }
-       return {
-        status: 404,
-        data: []
-       }
+        return {
+            status: 404,
+            data: []
+        }
     } catch (error) {
         return {
             status: 403,
@@ -154,10 +154,10 @@ export const getWorkspaceFolders = async (workspaceId: string) => {
     }
 }
 
-export const getAllUserVideos = async (workspaceId:string) => {
+export const getAllUserVideos = async (workspaceId: string) => {
     try {
         const user = await currentUser();
-        if(!user) {
+        if (!user) {
             return {
                 status: 403,
                 message: "Unauthorized !, user not found"
@@ -166,10 +166,10 @@ export const getAllUserVideos = async (workspaceId:string) => {
 
         const vidoes = await client.video.findMany({
             where: {
-                OR: [{workSpaceId:workspaceId},{folderId: workspaceId}]
+                OR: [{ workSpaceId: workspaceId }, { folderId: workspaceId }]
             },
             select: {
-                id:true,
+                id: true,
                 title: true,
                 createdAt: true,
                 source: true,
@@ -193,7 +193,7 @@ export const getAllUserVideos = async (workspaceId:string) => {
             },
         })
 
-        if(vidoes && vidoes.length) {
+        if (vidoes && vidoes.length) {
             return {
                 status: 200,
                 data: vidoes
@@ -215,7 +215,7 @@ export const getAllUserVideos = async (workspaceId:string) => {
 export const CreateWorkspace = async (name: string) => {
     try {
         const user = await currentUser()
-        if(!user) {
+        if (!user) {
             return {
                 status: 403,
                 message: "Unauthorized!!, No user found"
@@ -248,11 +248,11 @@ export const CreateWorkspace = async (name: string) => {
                     },
                 },
             })
-            if(workspace) {
-                return { status: 201, data: "Workspace Created !!"}
+            if (workspace) {
+                return { status: 201, data: "Workspace Created !!" }
             }
         }
-        return {status: 401, data: "You are not authorized to create a workspace."}
+        return { status: 401, data: "You are not authorized to create a workspace." }
     } catch (error) {
         return {
             status: 500,
@@ -265,7 +265,7 @@ export const CreateWorkspace = async (name: string) => {
 export const createFolder = async (workspaceId: string) => {
     try {
         const user = await currentUser()
-        if(!user) {
+        if (!user) {
             return {
                 status: 403,
                 message: "Unauthorized!!, no user found"
@@ -282,15 +282,15 @@ export const createFolder = async (workspaceId: string) => {
                 },
             },
         })
-        if(isNewFolder) {
-            return { status: 200, message: "New Folder Created"}
+        if (isNewFolder) {
+            return { status: 200, message: "New Folder Created" }
         }
         return {
             status: 401,
             message: "something went wrong"
         }
     } catch (error) {
-        return { status: 500, message: "Oops something went wrong"}
+        return { status: 500, message: "Oops something went wrong" }
     }
 }
 
@@ -305,7 +305,7 @@ export const renameFolders = async (folderId: string, name: string) => {
             },
         })
 
-        if(folder) {
+        if (folder) {
             return {
                 status: 200,
                 data: "Folder Renamed"
@@ -333,13 +333,13 @@ export const getFolderInfo = async (folderId: string) => {
                 name: true,
                 _count: {
                     select: {
-                        videos:true
+                        videos: true
                     }
                 }
             }
         })
 
-        if(folder) {
+        if (folder) {
             return {
                 status: 200,
                 data: folder
@@ -368,29 +368,29 @@ export const moveVideoLocation = async (
             where: {
                 id: videoId,
             },
-            data:  {
+            data: {
                 folderId: folderId || null,
                 workSpaceId,
             },
         })
 
         if (location) return { status: 200, data: "Folder changed successfully" }
-        return { status: 404, data: "workspace/folder not found"}
+        return { status: 404, data: "workspace/folder not found" }
     } catch (error) {
-        return { status: 500, data: "Oops! something went wrong"} 
+        return { status: 500, data: "Oops! something went wrong" }
     }
 }
 
 export const getPreviewVideo = async (videoId: string) => {
     try {
         const user = await currentUser()
-        if(!user) return {
+        if (!user) return {
             status: 404,
             data: "Unauthorized! no user found"
         }
         const video = await client.video.findUnique({
             where: {
-                id:videoId,
+                id: videoId,
             },
             select: {
                 title: true,
@@ -417,7 +417,7 @@ export const getPreviewVideo = async (videoId: string) => {
             },
         })
 
-        if(video) {
+        if (video) {
             return {
                 status: 200,
                 data: video,
@@ -437,10 +437,10 @@ export const getPreviewVideo = async (videoId: string) => {
     }
 }
 
-export const sendemailForFirstView  = async (videoId: string) => {
+export const sendemailForFirstView = async (videoId: string) => {
     try {
         const user = await currentUser()
-        if(!user) return {
+        if (!user) return {
             status: 403,
         }
         const firstViewSettings = await client.user.findUnique({
@@ -452,7 +452,7 @@ export const sendemailForFirstView  = async (videoId: string) => {
             },
         })
 
-        if(!firstViewSettings?.firstView)  return
+        if (!firstViewSettings?.firstView) return
 
         const video = await client.video.findUnique({
             where: {
@@ -469,7 +469,7 @@ export const sendemailForFirstView  = async (videoId: string) => {
             },
         })
 
-        if(video && video.views === 0) {
+        if (video && video.views === 0) {
             await client.video.update({
                 where: {
                     id: videoId,
@@ -479,18 +479,18 @@ export const sendemailForFirstView  = async (videoId: string) => {
                 },
             })
 
-            const {transporter,mailOptions} = await sendEmail(
+            const { transporter, mailOptions } = await sendEmail(
                 video.User?.email!,
                 "You got a viewer",
                 `Your video ${video.title} just got its first viewer`
             )
 
-            transporter.sendMail(mailOptions,async(error,info) => {
-                if(error) {
+            transporter.sendMail(mailOptions, async (error, info) => {
+                if (error) {
                     console.log(error.message)
                 } else {
                     const notification = await client.user.update({
-                        where: {clerkid: user.id},
+                        where: { clerkid: user.id },
                         data: {
                             notification: {
                                 create: {
@@ -499,7 +499,7 @@ export const sendemailForFirstView  = async (videoId: string) => {
                             },
                         },
                     })
-                    if(notification) {
+                    if (notification) {
                         return { status: 200 }
                     }
                 }
@@ -508,5 +508,25 @@ export const sendemailForFirstView  = async (videoId: string) => {
 
     } catch (error) {
         console.log(error)
+    }
+}
+
+export const editVideoInfo = async (
+    videoId: string,
+    title: string,
+    description: string
+) => {
+    try {
+        const video = await client.video.update({
+            where: { id: videoId },
+            data: {
+                title,
+                description,
+            },
+        })
+        if (video) return { status: 200, data: 'Video successfully updated' }
+        return { status: 404, data: 'Video not found' }
+    } catch (error) {
+        return { status: 400 }
     }
 }

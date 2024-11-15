@@ -22,11 +22,11 @@ const CreateWorkspace = (props: Props) => {
     }
   }
 
-  if (plan.subscription?.plan === 'FREE') {
+  if (plan?.subscription?.plan === 'FREE') {
     return <></>
   }
 
-  if (plan.subscription?.plan === 'PRO')
+  if (plan?.subscription?.plan === 'PRO')
     return (
       <Modal
         title="Create a Workspace"
