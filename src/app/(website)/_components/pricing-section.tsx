@@ -14,7 +14,9 @@ const plans = [
       { name: 'Single workspace', included: true },
       { name: '720p video quality', included: true },
       { name: 'Basic video sharing', included: true },
-      {name: 'Invite user in workspace', included: false}
+      { name: 'AI-powered transcripts', included: false },
+      { name: 'Automatic video title generation', included: false },
+      {name: 'Invite user in workspace', included: false},
     ],
   },
   {
