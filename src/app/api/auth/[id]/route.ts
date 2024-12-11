@@ -6,6 +6,7 @@ export async function GET(
   req: NextRequest,
   { params: { id } }: { params: { id: string } }
 ) {
+  console.log("Endpoint hit ✅");
 
   try {
     const userProfile = await client.user.findUnique({
@@ -23,8 +24,8 @@ export async function GET(
     });
     if (userProfile)
       return NextResponse.json({ status: 200, user: userProfile });
-    const clerk = await clerkClient();
-    const clerkUserInstance = await clerk.users.getUser(id);
+    const clerkclient = await clerkClient()
+    const clerkUserInstance = await clerkclient.users.getUser(id);
     const createUser = await client.user.create({
       data: {
         clerkid: id,
