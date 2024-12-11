@@ -106,7 +106,6 @@ const ChangeVideoLocation = ({
       <Button>
         <Loader
           state={isPending}
-          color="#000"
         >
           Transfer
         </Loader>

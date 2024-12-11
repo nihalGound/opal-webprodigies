@@ -1,7 +1,6 @@
 import React from "react";
 
-export const SystemMode = ({width}:{width?:number
-}) => {
+export const SystemMode = () => {
   return (
     <svg
       width="282"

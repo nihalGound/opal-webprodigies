@@ -1,6 +1,6 @@
-type Props = {}
 
-const VideoRecorderIcon = (props: Props) => {
+
+const VideoRecorderIcon = () => {
   return (
     <svg
       width="24"

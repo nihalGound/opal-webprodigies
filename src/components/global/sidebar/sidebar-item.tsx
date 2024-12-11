@@ -7,10 +7,9 @@ type Props = {
     title: string
     href: string
     selected: boolean
-    notifications?: number
 }
 
-const SidebarItem = ({icon, href, selected, title, notifications}: Props) => {
+const SidebarItem = ({icon, href, selected, title}: Props) => {
   return (
     <li className="cursor-pointer my-[5px]">
         <Link className={cn("flex items-center justify-between group rounded-lg hover:bg-[#1D1D1D]",

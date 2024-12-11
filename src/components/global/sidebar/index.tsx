@@ -121,7 +121,7 @@ export default function Sidebar({ activeWorkspaceId }: Props) {
               icon={item.icon}
               selected={pathName === item.href}
               title={item.title}
-              notifications={item.title === 'Notifications' ? notificationCount?._count?.notification || 0 : 0}
+              // notifications={item.title === 'Notifications' ? notificationCount?._count?.notification || 0 : 0}
             />
           ))}
         </nav>
@@ -145,7 +145,7 @@ export default function Sidebar({ activeWorkspaceId }: Props) {
                     href={`/dashboard/${item.id}`}
                     selected={pathName === `/dashboard/${item.id}`}
                     title={item.name}
-                    notifications={0}
+                    // notifications={0}
                     icon={<WorkspacePlaceholder>{item.name.charAt(0)}</WorkspacePlaceholder>}
                   />
                 )
@@ -157,7 +157,7 @@ export default function Sidebar({ activeWorkspaceId }: Props) {
                     href={`/dashboard/${item.WorkSpace.id}`}
                     selected={pathName === `/dashboard/${item.WorkSpace.id}`}
                     title={item.WorkSpace.name}
-                    notifications={0}
+                    // notifications={0}
                     icon={<WorkspacePlaceholder>{item.WorkSpace.name.charAt(0)}</WorkspacePlaceholder>}
                   />
                 )

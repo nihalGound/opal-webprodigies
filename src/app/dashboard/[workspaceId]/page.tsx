@@ -8,7 +8,6 @@ import CreateWorkspace from '@/components/global/create-workspace'
 import Folders from '@/components/global/folders'
 import Videos from '@/components/global/videos'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { query } from '@/lib/react-query'
 import {
   dehydrate,
   HydrationBoundary,
@@ -22,6 +21,7 @@ type Props = {
 }
 
 const Page = async ({ params }: Props) => {
+  const query = new QueryClient()
 
   const {workspaceId} = await params;
 
