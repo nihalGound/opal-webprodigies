@@ -72,7 +72,7 @@ const VideoPreview = ({ videoId }: Props) => {
           controls
         >
           <source
-            src={`${process.env.NEXT_PUBLIC_CLOUD_FRONT_STREAM_URL}/${video.source}#1`}
+            src={`https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/video/upload/opal/${video.source}.webm`}
           />
         </video>
         <div className="flex flex-col text-xl sm:text-2xl gap-y-4">
