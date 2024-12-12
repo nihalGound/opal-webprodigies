@@ -384,10 +384,10 @@ export const moveVideoLocation = async (
 export const getPreviewVideo = async (videoId: string) => {
     try {
         const user = await currentUser()
-        if (!user) return {
-            status: 404,
-            data: "Unauthorized! no user found"
-        }
+        // if (!user) return {
+        //     status: 404,
+        //     data: "Unauthorized! no user found"
+        // }
         const video = await client.video.findUnique({
             where: {
                 id: videoId,
@@ -421,7 +421,7 @@ export const getPreviewVideo = async (videoId: string) => {
             return {
                 status: 200,
                 data: video,
-                author: user.id === video.User?.clerkid ? true : false,
+                author: (user && user.id === video.User?.clerkid) ? true : false,
             }
         }
         return {

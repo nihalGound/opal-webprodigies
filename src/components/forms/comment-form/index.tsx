@@ -4,6 +4,7 @@ import Loader from '@/components/global/loader'
 import { Button } from '@/components/ui/button'
 import { useVideoComment } from '@/hooks/useVideo'
 import { Send, X } from 'lucide-react'
+import { redirect, useRouter } from 'next/navigation'
 import React from 'react'
 
 type Props = {
@@ -14,10 +15,29 @@ type Props = {
 }
 
 const CommentForm = ({ author, videoId, close, commentId }: Props) => {
-  const { errors, isPending, onFormSubmit, register } = useVideoComment(
+  const { errors, isPending, onFormSubmit, register,isAuthenticated } = useVideoComment(
     videoId,
     commentId
   )
+
+  const router = useRouter()
+
+  if (!isAuthenticated) {
+    return (
+      <div className='flex gap-4 w-full flex-col md:flex-row items-start md:items-center'>
+        <div className='text-muted-foreground'>
+        Need to login for comment
+      </div>
+        <Button
+          onClick={() => router.replace("/auth/sign-in")}
+          variant={"secondary"}
+        >
+          Sign in
+        </Button>
+      </div>
+      
+    )
+  }
 
   return (
     <form

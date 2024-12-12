@@ -27,7 +27,6 @@ const VideoPage =async ({params}: Props) => {
         queryKey: ['video-comments'],
         queryFn: () => getVideoComments(videoId),
     })
-    console.log(videoId)
   return (
     <HydrationBoundary state={dehydrate(query)}>
         <VideoPreview videoId={videoId} />

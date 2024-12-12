@@ -17,23 +17,12 @@ const Activities = ({ author, videoId }: Props) => {
     getVideoComments(videoId)
   )
 
-  if(!data) {
-    return (
-      <TabsContent
-      value="Activity"
-      className="rounded-xl flex flex-col gap-y-5">
-        No Comments
-      </TabsContent>
-    )
-  }
-
   const { data: comments } = data as VideoCommentProps
-
 
   return (
     <TabsContent
       value="Activity"
-      className="rounded-xl flex flex-col gap-y-5"
+      className="rounded-xl flex flex-col gap-y-4 sm:gap-y-5"
     >
       <CommentForm
         author={author}
@@ -59,3 +48,4 @@ const Activities = ({ author, videoId }: Props) => {
 }
 
 export default Activities
+

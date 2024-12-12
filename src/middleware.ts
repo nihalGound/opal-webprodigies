@@ -9,7 +9,7 @@ const corsOptions = {
   'Access-Control-Allow-Headers': 'Content-Type, Authorization',
 }
 
-const isProtectedRoutes = createRouteMatcher(['/dashboard(.*)', '/payment(.*)'])
+const isProtectedRoutes = createRouteMatcher(['/dashboard(.*)', '/payment(.*)', "/api(.*)"])
 
 export default clerkMiddleware(async (auth, req: NextRequest) => {
 
