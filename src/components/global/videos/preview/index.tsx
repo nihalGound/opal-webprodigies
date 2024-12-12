@@ -28,8 +28,6 @@ const VideoPreview = ({videoId}: Props) => {
         router.push("/")
     }
 
-    console.log("is author : ",author)
-
     const notifyFirstView = async () => await sendemailForFirstView(videoId)
 
     const daysAgo = Math.floor(

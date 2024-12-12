@@ -7,7 +7,6 @@ import EditVideoForm from '@/components/forms/edit-video'
 type Props = { title: string; description: string; videoId: string }
 
 const EditVideo = ({ description, title, videoId }: Props) => {
-    console.log("edit video rendered")
   return (
     <Modal
       title="Edit video details"

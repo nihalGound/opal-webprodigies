@@ -364,7 +364,6 @@ export const getVideoComments = async (id: string) => {
                 User: true,
             },
         })
-
         return { status: 200, data: comments }
     } catch (error) {
         return { status: 500, data: [] }
