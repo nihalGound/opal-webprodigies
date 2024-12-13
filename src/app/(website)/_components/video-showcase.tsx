@@ -3,27 +3,25 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Button } from "@/components/ui/button"
-import { PlayCircle } from 'lucide-react'
 
 const videos = [
   { 
     id: 'workspace',
     title: 'Quick Workspace Tour',
     description: 'Learn how to set up and navigate your Opal workspace.',
-    src: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4'
+    src: './workspace-tour.mp4'
   },
   { 
     id: 'recording',
     title: 'Recording Your First Video',
     description: 'Step-by-step guide to record and upload your first video with Opal.',
-    src: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4'
+    src: '/collaboration.mp4'
   },
   { 
     id: 'collaborate',
     title: 'Collaborating with Team',
     description: 'Discover how to invite team members and collaborate on projects.',
-    src: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4'
+    src: '/collaboration.mp4'
   },
 ]
 
@@ -48,24 +46,10 @@ export default function VideoShowcase() {
                 transition={{ duration: 0.5 }}
                 className="relative aspect-video rounded-lg overflow-hidden"
               >
-                {!playing ? (
-                  <div className="absolute inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50">
-                    <Button
-                      size="lg"
-                      onClick={() => setPlaying(true)}
-                      className="flex items-center gap-2"
-                    >
-                      <PlayCircle className="w-6 h-6" />
-                      Play Video
-                    </Button>
-                  </div>
-                ) : null}
                 <video
                   src={video.src}
                   className="w-full h-full object-cover"
-                  controls={playing}
-                  autoPlay={playing}
-                  poster="/placeholder.svg?height=400&width=700"
+                  controls={true}
                 />
               </motion.div>
               <h3 className="text-xl font-semibold mt-4">{video.title}</h3>
