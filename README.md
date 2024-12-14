@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Opal: Video Sharing, Screen Recording and Collaboration Platform
 
-## Getting Started
+![Demo Video](/public/workspace-tour.mp4)
 
-First, run the development server:
+Opal is a comprehensive application designed to streamline screen recording and video collaboration workflows. It consists of three integrated components: a Next.js web application, an Electron.js-based desktop application, and an Express.js server for video processing.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Web Application (Next.js)
+- **Workspace Management**:
+  - Create and manage workspaces.
+  - Invite collaborators to workspaces.
+- **Folder Organization**:
+  - Create and organize folders for video projects.
+- **Video Management**:
+  - Preview and share videos seamlessly.
+- **Real-Time Updates**:
+  - Videos recorded on the desktop app are uploaded and updated in real time.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Desktop Application (Electron.js)
+- **Screen Recording**:
+  - Capture high-quality screen recordings.
+  - Include audio and camera feeds during recording.
+- **Real-Time Uploads**:
+  - Videos are uploaded to the web app while recording.
 
-## Learn More
+### Video Processing Server (Express.js)
+- **Video Handling**:
+  - Processes and stores videos from the desktop app.
+  - Updates video details on the Next.js web application.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Project Repositories
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Web Application
+[opal-webprodigies](https://github.com/nihalGound/opal-webprodigies): Contains the Next.js application for video management and collaboration.
 
-## Deploy on Vercel
+### Desktop Application
+[opal-electron-desktop-app](https://github.com/nihalGound/opal-electron-desktop-app): Contains the Electron.js desktop app for screen recording and real-time uploads.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Video Processing Server
+[opal-express](https://github.com/nihalGound/opal-express): Contains the Express.js server for processing and updating video data.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## Usage
+1. **Record a Video**:
+   - Launch the Electron desktop app to record your screen, audio, and camera feed.
+2. **Upload in Real-Time**:
+   - Videos are uploaded to the web app as you record.
+3. **Manage and Collaborate**:
+   - Use the web application to preview, share, and organize videos in workspaces and folders.
+
+---
+
